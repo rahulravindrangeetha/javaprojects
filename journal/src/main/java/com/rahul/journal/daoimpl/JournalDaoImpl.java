@@ -15,14 +15,36 @@ public class JournalDaoImpl implements JournalDao
 	JournalRepo journalRepo;
 
 	@Override
-	public void createOrUpdateJournal(Journal journal) 
+	public void createJournal(Journal journal) 
 	{
 		journalRepo.save(journal);
 
 	}
+	
+	@Override
+	public void updateJournal(Journal journal) 
+	{
+		Journal existingJournal=journalRepo.findById(journal.getId()).get();
+		System.out.println("existingJournal->"+existingJournal);
+		modifyData(existingJournal,journal);
+		journalRepo.save(existingJournal);
+		
+
+	}
+
+	private void modifyData(Journal existingJournal, Journal journal) 
+	{
+		existingJournal.setAttachments(journal.getAttachments());
+		existingJournal.setDate(journal.getDate());
+		existingJournal.setJournal(journal.getJournal());
+		existingJournal.setTagValue(journal.getTagValue());
+		existingJournal.setTime(journal.getTime());
+		existingJournal.setTitle(journal.getTitle());
+		
+	}
 
 	@Override
-	public Optional<Journal> getJournal(int journalId) {
+	public Optional<Journal> getJournal(String journalId) {
 		// TODO Auto-generated method stub
 		return journalRepo.findById(journalId);
 	}

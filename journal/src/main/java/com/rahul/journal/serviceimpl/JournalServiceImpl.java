@@ -16,14 +16,21 @@ public class JournalServiceImpl implements JournalService
 	JournalDao journalDao;
 
 	@Override
-	public void createOrUpdateJournal(Journal journal) 
+	public void createJournal(Journal journal) 
 	{
-		journalDao.createOrUpdateJournal(journal);
+		journalDao.createJournal(journal);
+
+	}
+	
+	@Override
+	public void updateJournal(Journal journal) 
+	{
+		journalDao.updateJournal(journal);
 
 	}
 
 	@Override
-	public Optional<Journal> getJournal(int journalId) 
+	public Optional<Journal> getJournal(String journalId) 
 	{
 		// TODO Auto-generated method stub
 		return journalDao.getJournal(journalId);

@@ -29,12 +29,12 @@ public class JournalController
 	 @RequestMapping(value="/new",method=RequestMethod.POST)
 	 public ResponseEntity createJournal(@RequestBody Journal journal)
 	 {
-		 journalService.createOrUpdateJournal(journal);
+		 journalService.createJournal(journal);
 		 return new ResponseEntity(HttpStatus.CREATED); 
 	 }
 	 
 	 @RequestMapping(value="/get/{journalId}",method=RequestMethod.GET)
-	 public ResponseEntity getJournal(@PathVariable("journalId") int journalId)
+	 public ResponseEntity getJournal(@PathVariable("journalId") String journalId)
 	 {
 		 Optional<Journal> journal = journalService.getJournal(journalId);
 		 return new ResponseEntity(journal,HttpStatus.OK); 
@@ -43,7 +43,7 @@ public class JournalController
 	 @RequestMapping(value="/update",method=RequestMethod.PUT)
 	 public ResponseEntity updateJournal(@RequestBody Journal journal)
 	 {
-		 journalService.createOrUpdateJournal(journal);
+		 journalService.updateJournal(journal);
 		 return new ResponseEntity(HttpStatus.OK); 
 	 }
 	 

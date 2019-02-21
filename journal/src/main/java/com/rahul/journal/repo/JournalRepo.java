@@ -10,7 +10,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import com.rahul.journal.entity.Journal;
 
-public interface JournalRepo extends MongoRepository<Journal, Integer>
+public interface JournalRepo extends MongoRepository<Journal, String>
 {
 
 	

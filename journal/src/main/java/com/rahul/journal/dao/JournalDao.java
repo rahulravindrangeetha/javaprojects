@@ -6,8 +6,10 @@ import com.rahul.journal.entity.Journal;
 
 public interface JournalDao 
 {
-	public void createOrUpdateJournal(Journal journal);
+	public void createJournal(Journal journal);
 	
-	public Optional<Journal> getJournal(int journalId);
+	public void updateJournal(Journal journal);
+	
+	public Optional<Journal> getJournal(String journalId);
 	
 }

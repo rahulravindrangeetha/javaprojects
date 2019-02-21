@@ -9,10 +9,13 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.Type;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.stereotype.Indexed;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -20,12 +23,14 @@ import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalTimeDeserializer;
 import com.rahul.journal.util.Tag;
 
-@Document
+@Entity
+@Indexed
 public class Journal 
 {
-	@GeneratedValue
 	@Id
-	private int id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Type(type = "objectid")
+    private String id;
 	
 	private String title;
 	
@@ -74,12 +79,12 @@ public class Journal
 		this.tagValue = tagValue;
 	}
 
-	public int getId() 
+	public String getId() 
 	{
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -105,6 +110,26 @@ public class Journal
 
 	public void setAttachments(List<Attachment> attachments) {
 		this.attachments = attachments;
+	}
+
+	@Override
+	public String toString() {
+		return "Journal [id=" + id + ", title=" + title + ", journal=" + journal + ", time=" + time + ", date=" + date
+				+ ", tagValue=" + tagValue + ", attachments=" + attachments + "]";
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Journal other = (Journal) obj;
+		if (id != other.id)
+			return false;
+		return true;
 	}
 	
 	
