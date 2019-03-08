@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.rahul.journal.entity.AppData;
 import com.rahul.journal.entity.Journal;
+import com.rahul.journal.service.GoalService;
 import com.rahul.journal.service.JournalService;
 
 @RequestMapping(value="/journal")
@@ -25,11 +27,15 @@ public class JournalController
 	
 	 @Autowired
 	 private JournalService journalService;
+	 
+	 @Autowired
+	 private GoalService goalService;
 	
 	 @RequestMapping(value="/new",method=RequestMethod.POST)
-	 public ResponseEntity createJournal(@RequestBody Journal journal)
+	 public ResponseEntity createJournal(@RequestBody AppData data)
 	 {
-		 journalService.createJournal(journal);
+		 journalService.createJournal(data.getJournal());
+		 goalService.createUpdateGoals(data.getGoals());
 		 return new ResponseEntity(HttpStatus.CREATED); 
 	 }
 	 

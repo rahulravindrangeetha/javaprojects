@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 import org.hibernate.annotations.Type;
 import org.springframework.stereotype.Indexed;
@@ -32,6 +33,19 @@ public class Goal
 	private LocalDate expectedEndDate;
 	
 	private GoalType type;
+	
+	@ManyToOne
+	private Category category;
+	
+	
+
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
+	}
 
 	public String getId() {
 		return id;
