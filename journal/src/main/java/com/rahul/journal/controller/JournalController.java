@@ -1,5 +1,6 @@
 package com.rahul.journal.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +36,7 @@ public class JournalController
 	 public ResponseEntity createJournal(@RequestBody AppData data)
 	 {
 		 journalService.createJournal(data.getJournal());
-		 goalService.createUpdateGoals(data.getGoals());
+		 //goalService.createUpdateGoals(data.getGoals());
 		 return new ResponseEntity(HttpStatus.CREATED); 
 	 }
 	 
@@ -43,6 +44,13 @@ public class JournalController
 	 public ResponseEntity getJournal(@PathVariable("journalId") String journalId)
 	 {
 		 Optional<Journal> journal = journalService.getJournal(journalId);
+		 return new ResponseEntity(journal,HttpStatus.OK); 
+	 }
+	 
+	 @RequestMapping(value="/getAll",method=RequestMethod.GET)
+	 public ResponseEntity getAllJournal()
+	 {
+		 List<Journal> journal = journalService.getAllJournal();
 		 return new ResponseEntity(journal,HttpStatus.OK); 
 	 }
 	 

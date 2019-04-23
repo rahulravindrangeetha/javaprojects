@@ -34,7 +34,7 @@ public class Journal
 	
 	private String title;
 	
-	private Blob journal;
+	private String journal;
 	
 	@JsonDeserialize(using=LocalTimeDeserializer.class)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm")
@@ -96,11 +96,11 @@ public class Journal
 		this.title = title;
 	}
 
-	public Blob getJournal() {
+	public String getJournal() {
 		return journal;
 	}
 
-	public void setJournal(Blob journal) {
+	public void setJournal(String journal) {
 		this.journal = journal;
 	}
 

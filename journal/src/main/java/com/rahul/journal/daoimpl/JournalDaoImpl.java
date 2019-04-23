@@ -6,6 +6,8 @@ import org.springframework.stereotype.Repository;
 import com.rahul.journal.dao.JournalDao;
 import com.rahul.journal.entity.Journal;
 import com.rahul.journal.repo.JournalRepo;
+
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -44,9 +46,17 @@ public class JournalDaoImpl implements JournalDao
 	}
 
 	@Override
-	public Optional<Journal> getJournal(String journalId) {
+	public Optional<Journal> getJournal(String journalId) 
+	{
 		// TODO Auto-generated method stub
 		return journalRepo.findById(journalId);
+	}
+
+	@Override
+	public List<Journal> getAllJournal() 
+	{
+		// TODO Auto-generated method stub
+		return journalRepo.findAll();
 	}
 
 }
