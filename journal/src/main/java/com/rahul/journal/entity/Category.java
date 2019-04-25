@@ -10,6 +10,10 @@ import javax.persistence.Id;
 import org.hibernate.annotations.Type;
 import org.springframework.stereotype.Indexed;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+
 @Entity
 @Indexed
 public class Category 
@@ -21,6 +25,8 @@ public class Category
 	
 	private String desc;
 	
+	@JsonDeserialize(using=LocalDateDeserializer.class)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
 	private LocalDate addedDate;
 
 	public String getId() 
