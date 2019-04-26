@@ -24,7 +24,6 @@ public class Goal
 	
 	private String desc;
 	
-	private int version;
 	
 	private LocalDate startDate;
 	
@@ -63,13 +62,6 @@ public class Goal
 		this.desc = desc;
 	}
 
-	public int getVersion() {
-		return version;
-	}
-
-	public void setVersion(int version) {
-		this.version = version;
-	}
 
 	public LocalDate getStartDate() {
 		return startDate;
@@ -105,7 +97,7 @@ public class Goal
 
 	@Override
 	public String toString() {
-		return "Goal [id=" + id + ", desc=" + desc + ", version=" + version + ", startDate=" + startDate + ", endDate="
+		return "Goal [id=" + id + ", desc=" + desc + ", startDate=" + startDate + ", endDate="
 				+ endDate + ", expectedEndDate=" + expectedEndDate + ", type=" + type + "]";
 	}
 	
