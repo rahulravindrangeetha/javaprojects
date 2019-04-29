@@ -18,7 +18,7 @@ import com.rahul.journal.util.GoalType;
 
 @Entity
 @Indexed
-public class GoalCreator 
+public class GoalHub 
 {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)

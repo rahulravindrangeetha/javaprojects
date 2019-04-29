@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import com.rahul.journal.dao.GoalDao;
 import com.rahul.journal.dao.GoalRepoDao;
 import com.rahul.journal.entity.Goal;
-import com.rahul.journal.entity.GoalCreator;
+import com.rahul.journal.entity.GoalHub;
 import com.rahul.journal.service.GoalRepoService;
 import com.rahul.journal.service.GoalService;
 
@@ -19,25 +19,27 @@ public class GoalRepoServiceImpl implements GoalRepoService
 	private GoalRepoDao goalDao;
 
 	@Override
-	public void createGoalRepo(GoalCreator goalRepo) {
+	public void createGoalRepo(GoalHub goalRepo) 
+	{
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void updateGoalRepo(GoalCreator goalRepo) {
+	public void updateGoalRepo(GoalHub goalRepo) 
+	{
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public List<GoalCreator> getAllGoalCreator() {
+	public List<GoalHub> getAllGoalCreator() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public GoalCreator getAGoalCreator(String goalCreatorId) {
+	public GoalHub getAGoalCreator(String goalCreatorId) {
 		// TODO Auto-generated method stub
 		return null;
 	}

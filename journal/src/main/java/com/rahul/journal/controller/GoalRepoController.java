@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.rahul.journal.entity.AppData;
-import com.rahul.journal.entity.GoalCreator;
+import com.rahul.journal.entity.GoalHub;
 import com.rahul.journal.entity.Journal;
 import com.rahul.journal.service.GoalRepoService;
 import com.rahul.journal.service.GoalService;
@@ -32,7 +32,7 @@ public class GoalRepoController
 	 private GoalRepoService goalRepoService;
 	
 	 @RequestMapping(value="/new",method=RequestMethod.POST)
-	 public ResponseEntity createGoalRepo(@RequestBody GoalCreator goalCreator)
+	 public ResponseEntity createGoalRepo(@RequestBody GoalHub goalCreator)
 	 {
 		 goalRepoService.createGoalRepo(goalCreator);
 		 return new ResponseEntity(HttpStatus.CREATED); 
@@ -41,7 +41,7 @@ public class GoalRepoController
 	 @RequestMapping(value="/get/{goalRepoId}",method=RequestMethod.GET)
 	 public ResponseEntity getGoalRepo(@PathVariable("goalRepoId") String goalRepoId)
 	 {
-		 GoalCreator goalCreator = goalRepoService.getAGoalCreator(goalRepoId);
+		 GoalHub goalCreator = goalRepoService.getAGoalCreator(goalRepoId);
 		 return new ResponseEntity(goalCreator,HttpStatus.OK); 
 	 }
 	 
@@ -52,7 +52,7 @@ public class GoalRepoController
 	 }
 	 
 	 @RequestMapping(value="/update",method=RequestMethod.PUT)
-	 public ResponseEntity updateGoalRepo(@RequestBody GoalCreator goalCreator)
+	 public ResponseEntity updateGoalRepo(@RequestBody GoalHub goalCreator)
 	 {
 		 goalRepoService.updateGoalRepo(goalCreator);
 		 return new ResponseEntity(HttpStatus.OK); 

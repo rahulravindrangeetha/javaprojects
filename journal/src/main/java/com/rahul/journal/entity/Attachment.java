@@ -26,9 +26,6 @@ public class Attachment
 	
 	private Blob attachment;
 	
-	@ManyToOne
-	@JoinColumn(name="journal_id")
-	private Journal journal;
 
 	public String getId() {
 		return id;
@@ -46,17 +43,10 @@ public class Attachment
 		this.attachment = attachment;
 	}
 
-	public Journal getJournal() {
-		return journal;
-	}
-
-	public void setJournal(Journal journal) {
-		this.journal = journal;
-	}
 
 	@Override
 	public String toString() {
-		return "Attachment [id=" + id + ", attachment=" + attachment + ", journal=" + journal + "]";
+		return "Attachment [id=" + id + ", attachment=" + attachment + "]";
 	}
 
 	@Override

@@ -48,7 +48,7 @@ public class Journal
 	
 	private Tag tagValue;
 	
-	@OneToMany(mappedBy="journal")
+	@OneToMany
 	private List<Attachment> attachments;
 		
 	

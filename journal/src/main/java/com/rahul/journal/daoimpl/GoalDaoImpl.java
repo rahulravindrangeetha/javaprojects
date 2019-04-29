@@ -1,5 +1,6 @@
 package com.rahul.journal.daoimpl;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,14 @@ public class GoalDaoImpl implements GoalDao
 	{
 		goalRepo.saveAll(goals);
 		
+	}
+
+
+	@Override
+	public List<Goal> fetchGoals(LocalDate date) 
+	{
+		// TODO Auto-generated method stub
+		return goalRepo.fetchGoals(date);
 	} 
 	
 	

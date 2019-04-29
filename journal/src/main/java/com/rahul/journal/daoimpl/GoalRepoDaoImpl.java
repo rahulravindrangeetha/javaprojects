@@ -1,5 +1,6 @@
 package com.rahul.journal.daoimpl;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,7 @@ import com.rahul.journal.dao.GoalRepoDao;
 import com.rahul.journal.repo.GoalRepo;
 import com.rahul.journal.repo.GoalRepoRepo;
 import com.rahul.journal.entity.Goal;
-import com.rahul.journal.entity.GoalCreator;
+import com.rahul.journal.entity.GoalHub;
 
 @Repository
 public class GoalRepoDaoImpl implements GoalRepoDao 
@@ -20,28 +21,28 @@ public class GoalRepoDaoImpl implements GoalRepoDao
 	private GoalRepoRepo goalRepoRepo;
 
 	@Override
-	public void createGoalRepo(GoalCreator goalRepo) 
+	public void createGoalRepo(GoalHub goalRepo) 
 	{
 		goalRepoRepo.save(goalRepo);
 		
 	}
 
 	@Override
-	public void updateGoalRepo(GoalCreator goalRepo) 
+	public void updateGoalRepo(GoalHub goalRepo) 
 	{
 		goalRepoRepo.save(goalRepo);
 		
 	}
 
 	@Override
-	public List<GoalCreator> getAllGoalCreator() 
+	public List<GoalHub> getAllGoalCreator() 
 	{
 		
 		return goalRepoRepo.findAll();
 	}
 
 	@Override
-	public GoalCreator getAGoalCreator(String goalCreatorId) 
+	public GoalHub getAGoalCreator(String goalCreatorId) 
 	{
 		
 		return goalRepoRepo.findById(goalCreatorId).get();
@@ -52,6 +53,13 @@ public class GoalRepoDaoImpl implements GoalRepoDao
 	{
 		goalRepoRepo.deleteById(goalCreatorId);
 		
+	}
+
+	@Override
+	public List<GoalHub> getAllGoalCreatorForADate(LocalDate date, List<String> addedGoalDesc)
+	{
+		// TODO Auto-generated method stub
+		return goalRepoRepo.getAllGoalCreatorForADate(date,addedGoalDesc);
 	}
 	
 	

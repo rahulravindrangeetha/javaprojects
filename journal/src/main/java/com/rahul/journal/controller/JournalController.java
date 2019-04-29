@@ -1,5 +1,6 @@
 package com.rahul.journal.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -8,6 +9,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -32,12 +34,20 @@ public class JournalController
 	 @Autowired
 	 private GoalService goalService;
 	
-	 @RequestMapping(value="/new",method=RequestMethod.POST)
-	 public ResponseEntity createJournal(@RequestBody AppData data)
+	 @RequestMapping(value="/save",method=RequestMethod.POST)
+	 @Transactional
+	 public ResponseEntity saveJournal(@RequestBody AppData data)
 	 {
 		 journalService.createJournal(data.getJournal());
-		 //goalService.createUpdateGoals(data.getGoals());
+		 goalService.createUpdateGoals(data.getGoals());
 		 return new ResponseEntity(HttpStatus.CREATED); 
+	 }
+	 
+	 @RequestMapping(value="/create/{date}",method=RequestMethod.GET)
+	 @Transactional
+	 public ResponseEntity createJournal(@PathVariable("date") LocalDate date)
+	 {
+		 return new ResponseEntity(goalService.fetchGoals(date),HttpStatus.OK); 
 	 }
 	 
 	 @RequestMapping(value="/get/{journalId}",method=RequestMethod.GET)
