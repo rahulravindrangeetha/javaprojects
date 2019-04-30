@@ -1,6 +1,8 @@
 package com.rahul.journal.controller;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 
@@ -45,9 +47,10 @@ public class JournalController
 	 
 	 @RequestMapping(value="/create/{date}",method=RequestMethod.GET)
 	 @Transactional
-	 public ResponseEntity createJournal(@PathVariable("date") LocalDate date)
+	 public ResponseEntity createJournal(@PathVariable("date") String date)
 	 {
-		 return new ResponseEntity(goalService.fetchGoals(date),HttpStatus.OK); 
+		 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		 return new ResponseEntity(goalService.fetchGoals(LocalDate.parse(date,formatter)),HttpStatus.OK); 
 	 }
 	 
 	 @RequestMapping(value="/get/{journalId}",method=RequestMethod.GET)

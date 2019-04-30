@@ -11,7 +11,7 @@ import com.rahul.journal.entity.Goal;
 public interface GoalRepo extends MongoRepository<Goal, String> 
 {
 
-	@Query("{'startDate':{'$gte':?0},'expectedEndDate':{'$lte':?0}}")
+	@Query("{'startDate':{'$lte':?0},'expectedEndDate':{'$gte':?0}}")
 	List<Goal> fetchGoals(LocalDate date);
 
 }

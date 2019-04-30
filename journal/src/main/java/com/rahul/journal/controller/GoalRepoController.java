@@ -22,6 +22,8 @@ import com.rahul.journal.service.GoalRepoService;
 import com.rahul.journal.service.GoalService;
 import com.rahul.journal.service.JournalService;
 
+import ch.qos.logback.core.net.SyslogOutputStream;
+
 @RequestMapping(value="/goalrepo")
 @RestController
 @CrossOrigin
@@ -34,6 +36,7 @@ public class GoalRepoController
 	 @RequestMapping(value="/new",method=RequestMethod.POST)
 	 public ResponseEntity createGoalRepo(@RequestBody GoalHub goalCreator)
 	 {
+		 System.out.println("newwwww");
 		 goalRepoService.createGoalRepo(goalCreator);
 		 return new ResponseEntity(HttpStatus.CREATED); 
 	 }

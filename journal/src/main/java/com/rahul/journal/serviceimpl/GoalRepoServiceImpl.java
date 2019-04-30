@@ -16,37 +16,38 @@ import com.rahul.journal.service.GoalService;
 public class GoalRepoServiceImpl implements GoalRepoService 
 {
 	@Autowired
-	private GoalRepoDao goalDao;
+	private GoalRepoDao goaRepolDao;
 
 	@Override
 	public void createGoalRepo(GoalHub goalRepo) 
 	{
-		// TODO Auto-generated method stub
+		goaRepolDao.createGoalRepo(goalRepo);
 		
 	}
 
 	@Override
 	public void updateGoalRepo(GoalHub goalRepo) 
 	{
-		// TODO Auto-generated method stub
+		goaRepolDao.updateGoalRepo(goalRepo);
 		
 	}
 
 	@Override
 	public List<GoalHub> getAllGoalCreator() {
 		// TODO Auto-generated method stub
-		return null;
+		return goaRepolDao.getAllGoalCreator();
 	}
 
 	@Override
 	public GoalHub getAGoalCreator(String goalCreatorId) {
 		// TODO Auto-generated method stub
-		return null;
+		return goaRepolDao.getAGoalCreator(goalCreatorId);
 	}
 
 	@Override
 	public void deleteAGoalCreator(String goalCreatorId) {
 		// TODO Auto-generated method stub
+		goaRepolDao.deleteAGoalCreator(goalCreatorId);
 		
 	}
 

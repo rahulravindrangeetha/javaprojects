@@ -38,13 +38,17 @@ public class GoalServiceImpl implements GoalService
 	public List<Goal> fetchGoals(LocalDate date) 
 	{
 		List<Goal> goalsFromDB=goalDao.fetchGoals(date);
+		System.out.println("goalsFromDB 1 -->"+goalsFromDB);
 		List<String> addedGoalDesc=getListOfGoalsDesc(goalsFromDB);
+		System.out.println("addedGoalDesc-->"+addedGoalDesc);
 		List<GoalHub> goalsFromHub=goalRepoDao.getAllGoalCreatorForADate(date,addedGoalDesc);
-		goalsFromDB.addAll(convertGoalsFromHub(goalsFromHub));
-		return null;
+		System.out.println("goalsFromHub-->"+goalsFromHub);
+		goalsFromDB.addAll(convertGoalsFromHub(goalsFromHub,date));
+		System.out.println("final-->"+goalsFromDB);
+		return goalsFromDB;
 	}
 
-	private List<Goal> convertGoalsFromHub(List<GoalHub> goalsFromHub)
+	private List<Goal> convertGoalsFromHub(List<GoalHub> goalsFromHub, LocalDate date)
 	{
 		List<Goal> convertedGoals = new ArrayList<Goal>();
 		
@@ -53,33 +57,35 @@ public class GoalServiceImpl implements GoalService
 			Goal goal = new Goal();
 			goal.setCategory(goalFromHub.getCategory());
 			goal.setType(goalFromHub.getType());
-			setDates(goal,goalFromHub);
+			goal.setDesc(goalFromHub.getDesc());
+			setDates(goal,goalFromHub,date);
+			convertedGoals.add(goal);
 		}
 		return convertedGoals;
 	}
 
-	private void setDates(Goal goal, GoalHub goalFromHub) 
+	private void setDates(Goal goal, GoalHub goalFromHub, LocalDate date) 
 	{
-		LocalDate currentDate = LocalDate.now();
+		
 		if(goalFromHub.getType().equals(GoalType.Day))
 		{
-			goal.setStartDate(currentDate);
-			goal.setExpectedEndDate(currentDate);
+			goal.setStartDate(date);
+			goal.setExpectedEndDate(date);
 		}
 		else if(goalFromHub.getType().equals(GoalType.Weekly))
 		{
-			goal.setStartDate(currentDate.with(DayOfWeek.MONDAY));
-			goal.setExpectedEndDate(currentDate.with(DayOfWeek.SUNDAY));
+			goal.setStartDate(date.with(DayOfWeek.MONDAY));
+			goal.setExpectedEndDate(date.with(DayOfWeek.SUNDAY));
 		}
 		else if(goalFromHub.getType().equals(GoalType.Monthly))
 		{
-			goal.setStartDate(currentDate.withDayOfMonth(1));
-			goal.setExpectedEndDate(currentDate.with(TemporalAdjusters.lastDayOfMonth()));
+			goal.setStartDate(date.withDayOfMonth(1));
+			goal.setExpectedEndDate(date.with(TemporalAdjusters.lastDayOfMonth()));
 		}
 		else
 		{
-			goal.setStartDate(currentDate.withDayOfYear(1));
-			goal.setExpectedEndDate(currentDate.with(TemporalAdjusters.lastDayOfYear()));
+			goal.setStartDate(date.withDayOfYear(1));
+			goal.setExpectedEndDate(date.with(TemporalAdjusters.lastDayOfYear()));
 			
 		}
 		SimpleDateFormat format= new SimpleDateFormat("dd-MM-yyyy");
