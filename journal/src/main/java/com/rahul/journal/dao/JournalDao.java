@@ -1,5 +1,6 @@
 package com.rahul.journal.dao;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -11,7 +12,7 @@ public interface JournalDao
 	
 	public void updateJournal(Journal journal);
 	
-	public Optional<Journal> getJournal(String journalId);
+	public Optional<Journal> getJournal(LocalDate date);
 
 	public List<Journal> getAllJournal();
 	

@@ -1,5 +1,6 @@
 package com.rahul.journal.serviceimpl;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,10 +32,10 @@ public class JournalServiceImpl implements JournalService
 	}
 
 	@Override
-	public Optional<Journal> getJournal(String journalId) 
+	public Optional<Journal> getJournal(LocalDate date) 
 	{
 		// TODO Auto-generated method stub
-		return journalDao.getJournal(journalId);
+		return journalDao.getJournal(date);
 	}
 
 	@Override

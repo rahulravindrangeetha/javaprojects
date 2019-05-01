@@ -103,4 +103,10 @@ public class GoalServiceImpl implements GoalService
 		return goalDescs;
 	}
 
+	@Override
+	public List<Goal> getGoalsForJournal(LocalDate date) {
+		// TODO Auto-generated method stub
+		return goalDao.fetchGoals(date);
+	}
+
 }

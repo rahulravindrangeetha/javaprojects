@@ -1,5 +1,6 @@
 package com.rahul.journal.service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -9,7 +10,7 @@ public interface JournalService
 {
 	public void createJournal(Journal journal);
 	
-	public Optional<Journal> getJournal(String journalId);
+	public Optional<Journal> getJournal(LocalDate date);
 	
 	public void updateJournal(Journal journal);
 

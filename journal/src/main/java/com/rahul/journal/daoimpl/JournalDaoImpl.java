@@ -7,6 +7,7 @@ import com.rahul.journal.dao.JournalDao;
 import com.rahul.journal.entity.Journal;
 import com.rahul.journal.repo.JournalRepo;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -46,10 +47,10 @@ public class JournalDaoImpl implements JournalDao
 	}
 
 	@Override
-	public Optional<Journal> getJournal(String journalId) 
+	public Optional<Journal> getJournal(LocalDate date) 
 	{
 		// TODO Auto-generated method stub
-		return journalRepo.findById(journalId);
+		return Optional.of(journalRepo.findByDate(date));
 	}
 
 	@Override

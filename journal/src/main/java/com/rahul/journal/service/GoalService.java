@@ -14,4 +14,6 @@ public interface GoalService
 
 	public List<Goal> fetchGoals(LocalDate date);
 
+	public List<Goal> getGoalsForJournal(LocalDate parse);
+
 }

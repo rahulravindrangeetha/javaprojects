@@ -53,11 +53,21 @@ public class JournalController
 		 return new ResponseEntity(goalService.fetchGoals(LocalDate.parse(date,formatter)),HttpStatus.OK); 
 	 }
 	 
-	 @RequestMapping(value="/get/{journalId}",method=RequestMethod.GET)
-	 public ResponseEntity getJournal(@PathVariable("journalId") String journalId)
+	 @RequestMapping(value="/get/{date}",method=RequestMethod.GET)
+	 public ResponseEntity getJournal(@PathVariable("date") String date)
 	 {
-		 Optional<Journal> journal = journalService.getJournal(journalId);
-		 return new ResponseEntity(journal,HttpStatus.OK); 
+		 AppData data = new AppData();
+		 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		 Optional<Journal> journal = journalService.getJournal(LocalDate.parse(date,formatter));
+		 if(journal.isPresent())
+		 {
+			 data.setJournal(journal.get());
+			 data.setGoals(goalService.getGoalsForJournal(LocalDate.parse(date,formatter)));
+		 }
+		 else
+			 data.setJournal(null);
+		 
+		 return new ResponseEntity(data,HttpStatus.OK); 
 	 }
 	 
 	 @RequestMapping(value="/getAll",method=RequestMethod.GET)
